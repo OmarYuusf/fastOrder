@@ -1,0 +1,64 @@
+.carts {
+  padding: 0px 10px;
+}
+
+.carts .products-added {
+  width: 100%;
+  position: relative;
+  margin-top: 50px;
+}
+
+.carts .products-added table {
+  width: 100%;
+  border-collapse: collapse;
+  direction: rtl;
+}
+
+.carts .products-added thead tr th {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 15px;
+  background: #f6f6f6;
+  padding: 4px;
+  font-weight: 400;
+}
+
+.carts .products-added tbody tr:nth-child(even) {
+  background: #fff;
+}
+
+.carts .products-added tbody tr td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px 0px;
+}
+
+.carts .products-added tbody tr td button {
+  width: 60%;
+  background: #fd5e53;
+  border: 0px;
+  color: #fff;
+  font-size: 16px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.carts .products-added th,
+.carts .products-added td {
+  text-align: center;
+}
+
+.carts .products-added .send-order {
+  width: 50%;
+  padding: 10px;
+  background: #30db5b;
+  cursor: pointer;
+  border: 0px;
+  color: #fff;
+  font-weight: 900;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+          box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  display: block;
+  margin: auto;
+  margin-top: 50px;
+}
+/*# sourceMappingURL=Carts.css.map */

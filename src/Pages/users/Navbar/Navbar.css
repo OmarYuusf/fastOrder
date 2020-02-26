@@ -1,0 +1,143 @@
+.navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  padding: 10px;
+  background: #212121;
+  color: #fff;
+}
+
+.navbar h4 {
+  margin: 0px;
+}
+
+.navbar div:first-of-type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar div:nth-child(2) {
+  width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar div:nth-child(2) input {
+  width: 100%;
+  padding: 10px;
+  text-align: right;
+  border: 0px;
+  border-radius: 4px;
+}
+
+.navbar div:last-of-type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.navbar div:last-of-type > a {
+  margin-right: 15px;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+          box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 35px;
+  height: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar div:last-of-type svg {
+  font-size: 16px;
+}
+
+.navbar div:last-of-type a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.navbar div:last-of-type a:first-of-type {
+  background-color: #0a84ff;
+}
+
+.navbar div:last-of-type div {
+  background: #f0134d;
+  margin-right: 15px;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+          box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 35px;
+  height: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar div:last-of-type div:hover {
+  background: #fd5e53;
+}
+
+.navbar div:last-of-type div svg {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.navbar div:last-of-type a:last-of-type {
+  background: #30d158;
+  position: relative;
+}
+
+.navbar div:last-of-type a:last-of-type:hover {
+  background: rgba(48, 209, 88, 0.8);
+}
+
+.navbar div:last-of-type a:last-of-type svg {
+  margin-right: 5px;
+}
+/*# sourceMappingURL=Navbar.css.map */
