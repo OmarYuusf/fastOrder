@@ -1,6 +1,7 @@
 const initState = {
   allProducts: [],
-  carts: []
+  carts: [],
+  token:""
 };
 
 const reducer = (state = initState, action) => {
@@ -25,6 +26,10 @@ const reducer = (state = initState, action) => {
           ...state,
           carts: state.carts.concat(action.payload)
         };
+      }
+      case "SAVE_TOKEN" :
+      return{
+        token:action.payload
       }
 
     case "DELETE_ITEMS":

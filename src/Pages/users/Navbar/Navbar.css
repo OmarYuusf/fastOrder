@@ -12,6 +12,10 @@
   padding: 10px;
   background: #212121;
   color: #fff;
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
 }
 
 .navbar h4 {

@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import * as Actions from "../../../Store/Actions"
+
 class Navbar extends Component {
     render() {
         return (
@@ -30,7 +32,7 @@ class Navbar extends Component {
                 <span>{this.props.carts.length}</span>
               </Link>
 
-              <div>
+              <div onClick={() => this.props.logout()}>
                 <FontAwesomeIcon icon={faSignOutAlt} />
               </div>
             </div>
@@ -45,4 +47,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Navbar);
+const mapDispatchToProps = dispatch => {
+  return{
+    logout: () => dispatch(Actions.logout())
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Navbar);

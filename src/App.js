@@ -4,6 +4,7 @@ import Users from "./Pages/users/users";
 import Form from "./Pages/Form/Form";
 import { connect } from "react-redux";
 import * as Actions from "./Store/Actions";
+import { Switch, Route } from "react-router-dom";
 
 class App extends React.Component {
   componentDidMount() {
@@ -11,10 +12,11 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className="App">
-        <Users />
-        {/* <Form /> */}
-      </div>
+      <Switch>
+        <div className="App">
+            {localStorage.getItem("token") ? <Users /> : <Form />}
+        </div>
+      </Switch>
     );
   }
 }

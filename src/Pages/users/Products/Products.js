@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Actions from "../../../Store/Actions";
+import "./Products.css"
 
 class Products extends Component {
   render() {
