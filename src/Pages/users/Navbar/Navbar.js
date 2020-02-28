@@ -4,6 +4,7 @@ import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faSortAmountDownAlt } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import * as Actions from "../../../Store/Actions"
@@ -16,17 +17,23 @@ class Navbar extends Component {
             <div>
               <h4>{this.props.data.username}</h4>
             </div>
-            <div>
-            </div>
+            <div></div>
             <div>
               <Link to="/home">
                 <FontAwesomeIcon icon={faHome} />
               </Link>
+              {this.props.admin == true ? (
+                <Link to="/home/orders">
+                  <FontAwesomeIcon icon={faSortAmountDownAlt} />
+                </Link>
+              ) : null}
 
-              <Link to="/home/carts">
-                <FontAwesomeIcon icon={faShoppingCart} />
-                <span>{this.props.carts.length}</span>
-              </Link>
+              {this.props.admin == true ? null : (
+                <Link to="/home/carts">
+                  <FontAwesomeIcon icon={faShoppingCart} />
+                  <span>{this.props.carts.length}</span>
+                </Link>
+              )}
 
               <div onClick={() => this.props.logout()}>
                 <FontAwesomeIcon icon={faSignOutAlt} />
@@ -40,7 +47,8 @@ class Navbar extends Component {
 const mapStateToProps = state => {
   return {
     carts: state.carts,
-    data:state.userData
+    data:state.userData,
+    admin:state.admin
   };
 };
 
