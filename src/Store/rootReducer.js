@@ -1,7 +1,10 @@
 const initState = {
   allProducts: [],
   carts: [],
-  token:""
+  token:"",
+  isLogged:false,
+  userData:[],
+  admin:false
 };
 
 const reducer = (state = initState, action) => {
@@ -29,9 +32,31 @@ const reducer = (state = initState, action) => {
       }
       case "SAVE_TOKEN" :
       return{
-        token:action.payload
+        ...state,
+        token:action.payload,
+        isLogged:true
+      }
+      case "CHECK":
+      return{
+        ...state,
+        isLogged:true
       }
 
+      case "REMOVE_LOGGED":
+      return{
+        ...state,
+          isLogged:false
+      }
+      case "USER_DATA":
+      return{
+        ...state,
+        userData: action.payload
+      }
+      case "CHANGE_STATE":
+      return{
+        ...state,
+        admin:true
+      }
     case "DELETE_ITEMS":
       return {
         ...state,

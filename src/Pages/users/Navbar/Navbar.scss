@@ -50,6 +50,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @media (max-width: 600px) {
+        width: 25px;
+        height: 15px;
+      }
     }
 
     svg {
@@ -79,6 +83,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      @media (max-width: 600px) {
+        width: 25px;
+        height: 15px;
+      }
       &:hover {
         background: #fd5e53;
       }
@@ -91,6 +99,7 @@
     a:last-of-type {
       background: rgb(48, 209, 88);
       position: relative;
+
       &:hover {
         background: rgba(48, 209, 88, 0.8);
       }

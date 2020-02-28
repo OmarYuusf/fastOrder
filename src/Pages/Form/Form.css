@@ -17,6 +17,7 @@
   text-align: right;
   border-radius: 4px;
   width: 300px;
+  margin: auto 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -24,7 +25,6 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: auto;
   background: #fff;
   -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
           box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);

@@ -8,7 +8,7 @@ export const getProducts = () => {
     try {
       const { data } = response;
       dispatch(getProductsLast(data));
-      console.log(data);
+      console.log(getState())
     } catch (err) {
       console.log(err);
     }
@@ -33,7 +33,6 @@ export const newChange = (item, value) => {
 export const addToList = item => {
   return (dispatch, getState) => {
     dispatch(setToItem(item));
-    console.log(getState());
   };
 };
 
@@ -58,19 +57,21 @@ export const setDeleteItem = newData => {
 };
 
 export const login = (user, pass) => {
-  return async dispatch => {
+  return async (dispatch,getState) => {
     const response = await axios.post(
-      "http://fastorder.pythonanywhere.com/auth/token/login",
+      "http://fastorder.pythonanywhere.com/auth/jwt/create/",
       {
         username: user,
         password: pass
       }
     );
     try {
-      const data = response.data.auth_token;
+      const data = response.data.access;
       localStorage.setItem("token", data);
       dispatch(setToken(data));
-      window.location.href = "/";
+            console.log(getState())
+      window.location.href = "/home";
+
     } catch (err) {
       console.log(err);
     }
@@ -85,8 +86,53 @@ export const setToken = data => {
 };
 
 export const logout = () => {
-  return dispatch => {
+  return (dispatch,getState) => {
     localStorage.removeItem("token");
+    dispatch(removeLogged())
     window.location.href = "/";
   };
 };
+
+export const removeLogged = () => {
+  return{
+    type:"REMOVE_LOGGED"
+  } 
+}
+
+
+export const getUserData = (token) => {
+  return async (dispatch,getState) => {
+    const response = await axios.get("http://fastorder.pythonanywhere.com/auth/users/me/",{
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    try{
+      const {data} = response
+      dispatch(setDataUser(data))
+      if(data.username == "admin1"){
+        dispatch(changeState())
+      }
+    }catch(err){
+      console.log(err)
+    }
+  }
+}
+
+export const setDataUser = (data) => {
+  return {
+    type:"USER_DATA",
+    payload:data
+  }
+}
+
+export const changeState = () => {
+  return{
+    type:"CHANGE_STATE"
+  }
+}
+
+
+export const checkUser = () => {
+  return{
+    type:'CHECK'
+  }
+}

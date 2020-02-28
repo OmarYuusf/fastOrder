@@ -87,6 +87,13 @@
           align-items: center;
 }
 
+@media (max-width: 600px) {
+  .navbar div:last-of-type > a {
+    width: 25px;
+    height: 15px;
+  }
+}
+
 .navbar div:last-of-type svg {
   font-size: 16px;
 }
@@ -121,6 +128,13 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media (max-width: 600px) {
+  .navbar div:last-of-type div {
+    width: 25px;
+    height: 15px;
+  }
 }
 
 .navbar div:last-of-type div:hover {

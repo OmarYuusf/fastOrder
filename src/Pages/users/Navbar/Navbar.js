@@ -10,24 +10,20 @@ import * as Actions from "../../../Store/Actions"
 
 class Navbar extends Component {
     render() {
+      // {this.props.data.username}
         return (
           <div className="navbar">
             <div>
-              <h4>اسم المحل</h4>
+              <h4>{this.props.data.username}</h4>
             </div>
             <div>
-              <input
-                type="text"
-                placeholder="البحث عن المنتجات"
-                onChange={e => this.searchBox(e)}
-              />
             </div>
             <div>
-              <Link to="/">
+              <Link to="/home">
                 <FontAwesomeIcon icon={faHome} />
               </Link>
 
-              <Link to="/carts">
+              <Link to="/home/carts">
                 <FontAwesomeIcon icon={faShoppingCart} />
                 <span>{this.props.carts.length}</span>
               </Link>
@@ -43,14 +39,15 @@ class Navbar extends Component {
 
 const mapStateToProps = state => {
   return {
-    carts: state.carts
+    carts: state.carts,
+    data:state.userData
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return{
+  return {
     logout: () => dispatch(Actions.logout())
-  }
+  };
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Navbar);
