@@ -30,6 +30,13 @@ const reducer = (state = initState, action) => {
           carts: state.carts.concat(action.payload)
         };
       }
+
+    case 'SAVE_CARTS' :
+      return{
+        ...state,
+        carts:action.payload
+      }
+
     case "SAVE_TOKEN":
       console.log(action.payload);
       return {
@@ -53,7 +60,8 @@ const reducer = (state = initState, action) => {
     case "USER_DATA":
       return {
         ...state,
-        userData: action.payload
+        userData: action.payload,
+        isLogged: true
       };
     case "CHANGE_STATE":
       return {
@@ -63,7 +71,7 @@ const reducer = (state = initState, action) => {
     case "DELETE_ITEMS":
       return {
         ...state,
-        carts: state.carts.filter(items => items != action.payload)
+        carts: state.carts.filter(items => items !== action.payload)
       };
     default:
       return state;

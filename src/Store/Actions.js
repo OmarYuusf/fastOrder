@@ -33,6 +33,8 @@ export const newChange = (item, value) => {
 export const addToList = item => {
   return (dispatch, getState) => {
     dispatch(setToItem(item));
+    const data = getState().carts;
+    localStorage.setItem("cartsData", JSON.stringify(data))
   };
 };
 
@@ -42,6 +44,14 @@ export const setToItem = item => {
     payload: item
   };
 };
+
+export const getCarts = carts => {
+  return {
+    type: "SAVE_CARTS",
+    payload: carts
+  };
+}
+
 
 export const deleteItem = newData => {
   return dispatch => {
@@ -58,13 +68,10 @@ export const setDeleteItem = newData => {
 
 export const login = (user, pass) => {
   return async (dispatch, getState) => {
-    const response = await axios.post(
-      `${BASE_URL}auth/jwt/create/`,
-      {
-        username: user,
-        password: pass
-      }
-    );
+    const response = await axios.post(`${BASE_URL}auth/jwt/create/`, {
+      username: user,
+      password: pass
+    });
     try {
       const data = response.data.access;
       localStorage.setItem("token", data);
@@ -107,7 +114,7 @@ export const getUserData = token => {
       const { data } = response;
       dispatch(setDataUser(data));
 
-      if (data.username == "admin1") {
+      if (data.username === "admin1") {
         dispatch(changeState());
         console.log(getState());
       }

@@ -15,21 +15,26 @@ class App extends React.Component {
       this.props.checkUser(await localStorage.getItem("token"));
       this.props.getUserData(this.props.token);
       this.props.getProducts();
+      const data = JSON.parse(await localStorage.getItem("cartsData"));
+      this.props.getCarts(data);
     }
   }
   render() {
     return (
       <Switch>
         <div className="App">
-          {/* {localStorage.getItem("token") && this.props.admin == false ? <Users /> : <Form />} */}
+          
+          {this.props.logged === false ? null : <Navbar />}
 
-          {this.props.logged == false ? null : <Navbar />}
           <Route exact path="/" component={Form} />
-          {this.props.admin == true ? null : (
+
+          {this.props.admin === true ? null : (
             <Route exact path="/home" component={Users} />
           )}
-          {this.props.admin == true ? <Admin /> : null}
-          {this.props.admin == true ? (
+          
+          {this.props.admin === true ? <Admin /> : null}
+
+          {this.props.admin === true ? (
             <Route exact path="/home/orders" component={adminOrders} />
           ) : null}
         </div>
@@ -49,8 +54,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getProducts: () => dispatch(Actions.getProducts()),
-    checkUser: (token) => dispatch(Actions.checkUser(token)),
-    getUserData: token => dispatch(Actions.getUserData(token))
+    checkUser: token => dispatch(Actions.checkUser(token)),
+    getUserData: token => dispatch(Actions.getUserData(token)),
+    getCarts: carts => dispatch(Actions.getCarts(carts))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -22,14 +22,14 @@ class Navbar extends Component {
               <Link to="/home">
                 <FontAwesomeIcon icon={faHome} />
               </Link>
-              {this.props.admin == true ? (
+              {this.props.admin === true ? (
                 <Link to="/home/orders">
                   <FontAwesomeIcon icon={faSortAmountDownAlt} />
                 </Link>
               ) : null}
 
-              {this.props.admin == true ? null : (
-                <Link to="/home/carts">
+              {this.props.admin === true ? null : (
+                <Link to="/carts">
                   <FontAwesomeIcon icon={faShoppingCart} />
                   <span>{this.props.carts.length}</span>
                 </Link>

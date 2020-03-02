@@ -14,9 +14,17 @@ class users extends Component {
       <Switch>
         <div className="users">
           <div className="products">
-            {!this.props.logged == false ? <Route exact path="/home" component={Products} /> : null }
-            {!this.props.logged == false ? null : (<button className="back-login" onClick={this.backLogin}>قم بتسجيل الدخول أولا</button>) }
-            {!this.props.logged == false  ?  <Route exact path="/home/carts" component={Carts} /> : null}
+            {this.props.logged === false ? null : (
+              <Route exact path="/home" component={Products} />
+            )}
+            {!this.props.logged === false ? null : (
+              <button className="back-login" onClick={this.backLogin}>
+                قم بتسجيل الدخول أولا
+              </button>
+            )}
+            {this.props.logged === false ? null : (
+              <Route  path="/carts" component={Carts} />
+            )}
           </div>
         </div>
       </Switch>
