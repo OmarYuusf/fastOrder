@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import Users from "./Pages/users/users";
 import Form from "./Pages/Form/Form";
 import Admin from "./Pages/Admin/Admin";
 import Navbar from "./Pages/users/Navbar/Navbar";
@@ -8,6 +7,8 @@ import { connect } from "react-redux";
 import * as Actions from "./Store/Actions";
 import { Switch, Route } from "react-router-dom";
 import adminOrders from "./Pages/Admin/adminOrders/adminOrders";
+import Products from "./Pages/users/Products/Products";
+import Carts from "./Pages/users/Carts/Carts";
 
 class App extends React.Component {
   async componentDidMount() {
@@ -19,19 +20,23 @@ class App extends React.Component {
       this.props.getCarts(data);
     }
   }
+
+  backLogin = () => {
+    window.location.href = "/";
+  };
   render() {
     return (
       <Switch>
         <div className="App">
-          
-          {this.props.logged === false ? null : <Navbar />}
-
           <Route exact path="/" component={Form} />
-
-          {this.props.admin === true ? null : (
-            <Route exact path="/home" component={Users} />
+          {this.props.logged === false ? null : (
+            <>
+              <Navbar />
+              <Route exact path="/home" component={Products} />
+              <Route path="/carts" component={Carts} />
+            </>
           )}
-          
+
           {this.props.admin === true ? <Admin /> : null}
 
           {this.props.admin === true ? (

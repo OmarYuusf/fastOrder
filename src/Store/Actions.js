@@ -9,6 +9,7 @@ export const getProducts = () => {
     try {
       const { data } = response;
       dispatch(getProductsLast(data));
+      console.log(getState());
     } catch (err) {
       console.log(err);
     }
@@ -34,7 +35,7 @@ export const addToList = item => {
   return (dispatch, getState) => {
     dispatch(setToItem(item));
     const data = getState().carts;
-    localStorage.setItem("cartsData", JSON.stringify(data))
+    localStorage.setItem("cartsData", JSON.stringify(data));
   };
 };
 
@@ -50,12 +51,13 @@ export const getCarts = carts => {
     type: "SAVE_CARTS",
     payload: carts
   };
-}
-
+};
 
 export const deleteItem = newData => {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(setDeleteItem(newData));
+    const data = getState().carts;
+    localStorage.setItem("cartsData", JSON.stringify(data));
   };
 };
 

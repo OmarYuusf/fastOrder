@@ -18,8 +18,8 @@ const reducer = (state = initState, action) => {
         allProducts: action.payload
       };
     case "SET_TO_LIST":
-      const res = state.carts.filter(elements => elements == action.payload);
-      if (res.length > 0) {
+      const resTwo = state.carts.filter(items => items.id == action.payload.id)
+      if (resTwo.length > 0) {
         alert("مضاف بالفعل");
         return {
           ...state
