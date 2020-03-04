@@ -1,10 +1,12 @@
 const initState = {
+  emailData: {},
   allProducts: [],
   carts: [],
   token: "",
   isLogged: false,
   userData: [],
-  admin: false
+  admin: false,
+  orders: []
 };
 
 const reducer = (state = initState, action) => {
@@ -18,7 +20,7 @@ const reducer = (state = initState, action) => {
         allProducts: action.payload
       };
     case "SET_TO_LIST":
-      const resTwo = state.carts.filter(items => items.id == action.payload.id)
+      const resTwo = state.carts.filter(items => items.id == action.payload.id);
       if (resTwo.length > 0) {
         alert("مضاف بالفعل");
         return {
@@ -31,18 +33,22 @@ const reducer = (state = initState, action) => {
         };
       }
 
-    case 'SAVE_CARTS' :
-      return{
+    case "SAVE_CARTS":
+      return {
         ...state,
-        carts:action.payload
-      }
+        carts: action.payload
+      };
 
     case "SAVE_TOKEN":
-      console.log(action.payload);
+      const emailData = {
+        username: action.emailData.name,
+        password: action.emailData.password
+      };
       return {
         ...state,
         token: action.payload,
-        isLogged: true
+        isLogged: true,
+        emailData: emailData
       };
     case "CHECK":
       return {
@@ -55,7 +61,7 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         isLogged: false,
-        admin:false
+        admin: false
       };
     case "USER_DATA":
       return {
@@ -66,13 +72,27 @@ const reducer = (state = initState, action) => {
     case "CHANGE_STATE":
       return {
         ...state,
-        admin: true
+        admin: true,
+        isLogged: false
       };
     case "DELETE_ITEMS":
       return {
         ...state,
         carts: state.carts.filter(items => items !== action.payload)
       };
+
+    case "SET_ORDERS":
+      return {
+        ...state,
+        orders: action.payload
+      };
+
+    case "DELETE_ORDER":
+      return {
+        ...state,
+        carts: []
+      };
+
     default:
       return state;
   }

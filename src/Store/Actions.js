@@ -3,13 +3,10 @@ import { BASE_URL } from "../Constant/Constant";
 
 export const getProducts = () => {
   return async (dispatch, getState) => {
-    const response = await axios.get(
-      "http://fastorder.pythonanywhere.com/Products/"
-    );
+    const response = await axios.get(`${BASE_URL}Products/`);
     try {
       const { data } = response;
       dispatch(getProductsLast(data));
-      console.log(getState());
     } catch (err) {
       console.log(err);
     }
@@ -77,25 +74,31 @@ export const login = (user, pass) => {
     try {
       const data = response.data.access;
       localStorage.setItem("token", data);
-      dispatch(setToken(data));
+      dispatch(setToken(data, user, pass));
       console.log(getState());
-      window.location.href = "/home";
+      if (user === "admin1") {
+        window.location.href = "/";
+      } else {
+        window.location.href = "/home";
+      }
     } catch (err) {
       console.log(err);
     }
   };
 };
 
-export const setToken = data => {
+export const setToken = (data, name, password) => {
   return {
     type: "SAVE_TOKEN",
-    payload: data
+    payload: data,
+    emailData: { name: name, password: password }
   };
 };
 
 export const logout = () => {
   return (dispatch, getState) => {
     localStorage.removeItem("token");
+    localStorage.removeItem("cartsData");
     dispatch(removeLogged());
     window.location.href = "/";
   };
@@ -118,7 +121,6 @@ export const getUserData = token => {
 
       if (data.username === "admin1") {
         dispatch(changeState());
-        console.log(getState());
       }
     } catch (err) {
       console.log(err);
@@ -149,5 +151,89 @@ export const setCheckToken = token => {
   return {
     type: "CHECK",
     payload: token
+  };
+};
+
+export const sendOrder = (carts, userName) => {
+  return async (dispatch, getState) => {
+    const timeNow = new Date().toLocaleString();
+    const carts = getState().carts;
+    carts.forEach(element => {
+      delete element.id;
+    });
+    const response = await axios.post(`${BASE_URL}poll/poll/`, {
+      title: userName,
+      choices: carts,
+      time: timeNow
+    });
+    try {
+      alert("تم توصيل الأوردر بنجاح");
+      localStorage.removeItem("cartsData");
+      dispatch(deleteAllCart())
+    } catch (err) {
+      alert("حدث خطأ");
+    }
+  };
+};
+
+export const deleteAllCart = () => {
+  return {
+    type: "DELETE_ORDER"
+  };
+}
+
+export const getOrders = () => {
+  return async (dispatch, getState) => {
+    const response = await axios.get(`${BASE_URL}poll/poll/`);
+    try {
+      const { data } = response;
+      dispatch(setOrders(data));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const setOrders = data => {
+  return {
+    type: "SET_ORDERS",
+    payload: data
+  };
+};
+
+export const deleteOrder = id => {
+  return async (dispatch, getState) => {
+    const response = await axios.delete(`${BASE_URL}poll/poll/${id}`);
+    try {
+      dispatch(getOrders());
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const addProduct = state => {
+  return async dispatch => {
+    const response = await axios.post(`${BASE_URL}Products/`, {
+      item: state.item,
+      price: state.price,
+      count: 1
+    });
+    try {
+      dispatch(getProducts());
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const deleteProduct = id => {
+  return async dispatch => {
+    const response = await axios.delete(`${BASE_URL}Products/${id}`);
+    try {
+      dispatch(getProducts());
+    } catch (err) {
+      console.log(err);
+    }
   };
 };

@@ -16,6 +16,12 @@ class App extends React.Component {
       this.props.checkUser(await localStorage.getItem("token"));
       this.props.getUserData(this.props.token);
       this.props.getProducts();
+
+      // setInterval(() => {
+      //   this.props.checkToken();
+      // }, 1000);
+    }
+    if (localStorage.getItem("cartsData")) {
       const data = JSON.parse(await localStorage.getItem("cartsData"));
       this.props.getCarts(data);
     }
@@ -28,7 +34,10 @@ class App extends React.Component {
     return (
       <Switch>
         <div className="App">
-          <Route exact path="/" component={Form} />
+          {this.props.admin === true ? null : (
+            <Route exact path="/" component={Form} />
+          )}
+
           {this.props.logged === false ? null : (
             <>
               <Navbar />

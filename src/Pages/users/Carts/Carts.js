@@ -36,7 +36,7 @@ class Carts extends Component {
               })}
             </tbody>
           </table>
-          <button className="send-order" onClick={() => this.sendOrder()}>
+          <button className="send-order" onClick={() => this.props.sendOrder(this.props.carts,this.props.data.username)}>
             إرسال
           </button>
         </div>
@@ -47,13 +47,15 @@ class Carts extends Component {
 
 const mapStateToProps = state => {
   return {
-    carts: state.carts
+    carts: state.carts,
+    data:state.userData,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    deleteItem: newData => dispatch(Actions.deleteItem(newData))
+    deleteItem: newData => dispatch(Actions.deleteItem(newData)),
+    sendOrder: (carts,userName) => dispatch(Actions.sendOrder(carts,userName))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Carts);
